@@ -1,64 +1,97 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/RPHb6JFs)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=20971129&assignment_repo_type=AssignmentRepo)
-# Atividade 4 - Classe e Objeto
+# Atividade: Modificadores de Acesso e Getters/Setters
+
+## Descrição
+Este projeto foi desenvolvido para simular o uso de **modificadores de acesso (private/public)** e **métodos Getters e Setters** em Java, utilizando a classe `CorpoHumano`.  
+Também foi implementado o cálculo do **IMC (Índice de Massa Corporal)** como desafio extra.
+
+---
+
+## Estrutura do Projeto
+- `App.java` → Classe principal, responsável pela interação com o usuário e execução do programa.
+- `CorpoHumano.java` → Classe que representa o corpo humano, com atributos privados e métodos de acesso (get/set).
+
+---
+
+## Execução do Programa
+
+### Exemplo de entrada:
+
+=== CRIAÇÃO DO OBJETO CORPO HUMANO ===
+Digite a massa inicial (kg): 70
+Digite o volume inicial (m³): 0.07
+Digite a densidade inicial (kg/m³): 1000
+Digite a altura inicial (m): 1.75
+
+### Saída esperada:
+
+=== VALORES INICIAIS ===
+Massa: 70.0 kg
+Volume: 0.07 m³
+Densidade: 1000.0 kg/m³
+Altura: 1.75 m
+IMC: 22.86
+
+Digite uma nova massa (kg): 80
+Digite uma nova altura (m): 1.80
+
+Novos valores:
+Massa: 80.0 kg
+Altura: 1.8 m
+Novo IMC: 24.69
 
 
+---
 
-## Sumário 
-- [Como Utilizar Esse Projteto](#como-utilizar-esse-projeto-)
-- [Desafio da Atividade](#desafio-da-atividade-)
-- [No Microsoft Teams](#no-microsoft-teams--)
-- [Regras](#regras-)
-- [Feedback](#feedback-)
+## Questões solicitadas
 
-## Como Utilizar Esse Projeto 📁
+### 1. Linha `c1.massa = "2";` após instanciar o objeto
 
-- Nesse projeto há  pasta:
-    - FazerVsCode:Exclusiva para realizar no VisualStudio Code. 
+**Ocorrência:**  
+Ocorreu um erro de compilação. A variável `massa` é privada, portanto, **não pode ser acessada diretamente fora da classe `CorpoHumano`**.
 
-- Na sua máquina tem que ter instalado o <a href="https://www.oracle.com/br/java/technologies/downloads/" target="_blank">Java Development Kit (JDK) </a> 
-- Caso utilize o VisualStudio Code é necessário que instale a <a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack" target="_blank">Extension Pack for Java</a>
+**Conclusão:**  
+O modificador `private` impede o acesso direto ao atributo, garantindo o **encapsulamento** e protegendo os dados.  
+A modificação deve ser feita apenas por meio do **método setter**.
 
+---
 
-## Escopo da Atividade 🛠️
+### 2. Alterar `private double massa` para `public double massa`
 
-- Implementar uma classe que seja capaz de simular atuação dos modificadores de acesso e respectivamente os métodos getters/setters: 
-- Implemente a Classe Corpo Humano e o Construtor  
-- Implemente os métodos Getters
-- Implemente os métodos Setters
-- Implemente uma classe main que inclua as seguintes informações: Massa, Volume e Densidade
+**Ocorrência:**  
+O código passou a compilar e a execução permitiu alterar `massa` diretamente.
 
+**Conclusão:**  
+O modificador `public` permite acesso livre ao atributo, o que **quebra o encapsulamento**.  
+Isso pode gerar inconsistências ou valores inválidos, por isso **não é uma boa prática**.
 
+---
 
-### Após essa implementação responda:
+### 3. Alterar `public void setVolume(double volume)` para `private void setVolume(double volume)`
 
-- Na classe Corpo_Humano inclua a linha c1.massa = "2"; logo depois de instanciar o objeto c1. Qual foi a ocorrência? Qual a conclusão sobre o que aconteceu?
-- Na classe Corpo_Humano altere a linha private float Massa para public float Massa; Qual foi a ocorrência? Qual a conclusão sobre o que aconteceu?
-- Na classe Corpo_Humano altere a linha public setVolume (float volume) para private setVolume (float volume).Qual foi a ocorrência? Qual a conclusão sobre o que aconteceu?
-- Coloque as respostas em um arquivo txt
+**Ocorrência:**  
+Ao tentar chamar `c1.setVolume()` na `App.java`, o compilador exibiu erro de acesso.
 
-<b>Colocar essa informação no Readme do Git ou Em comentários de código na classe main </b>
+**Conclusão:**  
+Um método `private` só pode ser usado dentro da própria classe.  
+Torná-lo `private` impede que código externo (como `App.java`) altere o volume diretamente.  
+Essa proteção é útil quando você quer controlar totalmente como o atributo é alterado.
 
+---
 
-## DESAFIO 🚀
+## Desafio Extra
 
-- Implementar o Atributo e os Metodos de acesso para Altura;
-- Criar um método para calcular o Indíce de Massa Corporal (IMC), sendo: IMC = (Peso/Altura)*2
-- Exibir/Imprimir o IMC na classe main
+Foi adicionado o atributo **Altura** e os métodos `getAltura()` e `setAltura()`.
 
+Além disso, foi implementado o método:
 
-## No Microsoft Teams  👥
+`
+java
+public double calcularIMC() {
+    return massa / (altura * altura);
+}
+` 
 
-- Não há necessidade fazer o upload do projeto 
-- Enviar o Link do repositório
+---
 
-## Regras 📄
-
-- Utilize as boas práticas de programação que são sempre mencionadas em aula e nos materiais; 
-- Observe sempre os modificadores de acesso em atributos e métodos;
-- Observe os nomes de classes e atributos;
-- Utilze comentários para elucidar o cenário elaborado;
-
-## Feedback 📨
--  Sua atividade receberá uma pontuação de 0 a 10, que compõe a Nota de Atividades da ATV1;
--  A nota será atribuída no Microsoft Teams
+## Autor
+Caio Parolin
